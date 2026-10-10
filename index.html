@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Rahasia</title>
+    <style>
+        /* Gaya Umum */
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Menyembunyikan langkah yang belum aktif */
+        .langkah {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Menampilkan langkah yang aktif */
+        .aktif {
+            display: flex;
+        }
+
+        /* Gaya Teks Instruksi */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        /* Gaya Tombol */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Gaya untuk Langkah 3 (Hasil Akhir) */
+        .neon-text {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: flicker 1.5s infinite alternate, zoomInOut 2s ease-in-out infinite;
+        }
+
+        /* Animasi Transisi Halus */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animasi Neon (dari versi sebelumnya) */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c, 0 0 40px #ff003c, 0 0 80px #ff003c;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        /* Animasi Zoom In-Out untuk Hasil Akhir */
+        @keyframes zoomInOut {
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(0.9); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Langkah 1 -->
+    <div id="langkah1" class="langkah aktif">
+        <h1>Ada pesan rahasia untukmu...</h1>
+        <button onclick="pindahLangkah('langkah1', 'langkah2')">Buka Pesan (Langkah 1/3)</button>
+    </div>
+
+    <!-- Langkah 2 -->
+    <div id="langkah2" class="langkah">
+        <h1>Apakah kamu yakin ingin melihatnya?</h1>
+        <p style="color: #888; margin-bottom: 20px;">Pesan ini sangat penting.</p>
+        <button onclick="pindahLangkah('langkah2', 'langkah3')" style="background-color: #ff8c00;">Ya, Saya Yakin! (Langkah 2/3)</button>
+    </div>
+
+    <!-- Langkah 3 (Hasil Akhir) -->
+    <div id="langkah3" class="langkah">
+        <div class="neon-text">FUCK YOU</div>
+    </div>
+
+    <!-- Script untuk memproses tombol -->
+    <script>
+        function pindahLangkah(langkahSekarang, langkahSelanjutnya) {
+            // Sembunyikan langkah saat ini
+            document.getElementById(langkahSekarang).classList.remove('aktif');
+            // Tampilkan langkah selanjutnya
+            document.getElementById(langkahSelanjutnya).classList.add('aktif');
+        }
+    </script>
+
+</body>
+</html>
